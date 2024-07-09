@@ -1,12 +1,7 @@
 package com.example.airport.models;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -14,12 +9,10 @@ import jakarta.persistence.Table;
 public class Airport extends BaseEntity{
   private String _name;
   private String _city;
-  private List<Airline> _airlines;
 
-  public Airport(String name, String city, List<Airline> airlines) {
+  public Airport(String name, String city) {
     _name = name;
     _city = city;
-    _airlines = airlines;
   }
 
   protected Airport(){}
@@ -32,11 +25,5 @@ public class Airport extends BaseEntity{
   @Column(name = "city")
   public String getCity() {
     return _city;
-  }
-
-  @ManyToMany(fetch = FetchType.LAZY)
-  @JoinColumn(name = "airline")
-  public List<Airline> getAirlines() {
-    return _airlines;
   }
 }

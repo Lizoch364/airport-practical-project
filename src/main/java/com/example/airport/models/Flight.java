@@ -61,7 +61,6 @@ public class Flight extends BaseEntity{
   }
 
   @OneToMany(fetch = FetchType.LAZY)
-  @JoinColumn(name = "tickets")
   public List<Ticket> getTickets() {
     return _tickets;
   }
