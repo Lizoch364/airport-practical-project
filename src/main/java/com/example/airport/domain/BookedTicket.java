@@ -1,4 +1,4 @@
-package com.example.airport.models;
+package com.example.airport.domain;
 
 import java.util.Date;
 
@@ -12,18 +12,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "booked_ticket")
 public class BookedTicket extends BaseEntity{
-  private Ticket _ticket;
-  private Passenger _passenger;
-  private BookingStatus _status = BookingStatus.CREATED;
-  private Date _bookedAt;
-  private Date _updatedAt;
+  private Ticket ticket;
+  private Passenger passenger;
+  private BookingStatus status;
+  private Date bookedAt;
+  private Date updatedAt;
 
   public BookedTicket(Ticket ticket, Passenger passenger) {
-    _ticket = ticket;
-    _passenger = passenger;
-    _status = BookingStatus.CREATED;
-    _bookedAt = new Date();
-    _updatedAt = new Date();
+    this.ticket = ticket;
+    this.passenger = passenger;
+    this.status = BookingStatus.CREATED;
+    this.bookedAt = new Date();
+    this.updatedAt = new Date();
   }
 
   protected BookedTicket() {}
@@ -31,28 +31,28 @@ public class BookedTicket extends BaseEntity{
   @OneToOne
   @JoinColumn (name = "ticket")
   public Ticket getTicket() {
-    return _ticket;
+    return ticket;
   }
 
   @ManyToOne
   @JoinColumn(name = "passenger")
   public Passenger getPassenger() {
-    return _passenger;
+    return passenger;
   }
 
   @ManyToOne
   @JoinColumn(name = "status")
   public BookingStatus getStatus() {
-    return _status;
+    return status;
   }
 
   @Column(name = "booked_at")
   public Date getBookedAt() {
-    return _bookedAt;
+    return bookedAt;
   }
 
   @Column(name = "update_at")
   public Date getUpdatedAt() {
-    return _updatedAt;
+    return updatedAt;
   }
 }

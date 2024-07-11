@@ -1,4 +1,4 @@
-package com.example.airport.models;
+package com.example.airport.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,18 +10,18 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "ticket")
 public class Ticket extends BaseEntity{
-  private TariffClass _tariffClass;
-  private Flight _flight;
-  private String _seat;
-  private double _price;
-  private BookedTicket _bookedTicket;
+  private TariffClass tariffClass;
+  private Flight flight;
+  private String seat;
+  private double price;
+  private BookedTicket bookedTicket;
 
   public Ticket (Flight flight, String seat, double price) {
-    _tariffClass = TariffClass.BASIC;
-    _flight = flight;
-    _seat = seat;
-    _price = price;
-    _bookedTicket = null;
+    this.tariffClass = TariffClass.BASIC;
+    this.flight = flight;
+    this.seat = seat;
+    this.price = price;
+    this.bookedTicket = null;
   }
 
   protected Ticket () {}
@@ -29,28 +29,28 @@ public class Ticket extends BaseEntity{
   @ManyToOne
   @JoinColumn(name = "tariff_class")
   public TariffClass getTariffClass() {
-    return _tariffClass;
+    return tariffClass;
   }
 
   @ManyToOne
   @JoinColumn(name = "flight")
   public Flight getFlight() {
-    return _flight;
+    return flight;
   }
 
   @Column(name = "seat")
   public String getSeat() {
-    return _seat;
+    return seat;
   }
 
   @Column(name = "price")
   public double getPrice() {
-    return _price;
+    return price;
   }
 
   @OneToOne
   @JoinColumn(name = "booked_ticket")
   public BookedTicket getBookedTicket() {
-    return _bookedTicket;
+    return bookedTicket;
   }
 }

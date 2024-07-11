@@ -1,4 +1,4 @@
-package com.example.airport.models;
+package com.example.airport.domain;
 
 enum BookingStatus {
   CREATED,

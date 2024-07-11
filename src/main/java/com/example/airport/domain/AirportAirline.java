@@ -1,4 +1,4 @@
-package com.example.airport.models;
+package com.example.airport.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -8,23 +8,23 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "airport_airlines")
 public class AirportAirline extends BaseEntity{
-  private Airline _airline;
-  private Airport _airport;
+  private Airline airline;
+  private Airport airport;
 
   public AirportAirline(Airline airline, Airport airport) {
-    _airline = airline;
-    _airport = airport;
+    this.airline = airline;
+    this.airport = airport;
   }
 
   @ManyToOne
   @JoinColumn(name = "airline")
   public Airline getAirline() {
-    return _airline;
+    return airline;
   }
 
   @ManyToOne
   @JoinColumn(name = "airport")
   public Airport getAirport() {
-    return _airport;
+    return airport;
   }
 }

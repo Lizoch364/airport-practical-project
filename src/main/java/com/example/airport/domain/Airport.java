@@ -1,4 +1,4 @@
-package com.example.airport.models;
+package com.example.airport.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,23 +7,23 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "airport")
 public class Airport extends BaseEntity{
-  private String _name;
-  private String _city;
+  private String name;
+  private String city;
 
   public Airport(String name, String city) {
-    _name = name;
-    _city = city;
+    this.name = name;
+    this.city = city;
   }
 
   protected Airport(){}
 
   @Column(name = "name")
   public String getName() {
-    return _name;
+    return name;
   }
 
   @Column(name = "city")
   public String getCity() {
-    return _city;
+    return city;
   }
 }
