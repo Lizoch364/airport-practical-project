@@ -27,4 +27,12 @@ public class AirportAirline extends BaseEntity{
   public Airport getAirport() {
     return airport;
   }
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+  public void setAirport(Airport airport) {
+    this.airport = airport;
+  }
 }

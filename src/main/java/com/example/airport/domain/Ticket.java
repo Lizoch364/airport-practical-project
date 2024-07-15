@@ -2,6 +2,8 @@ package com.example.airport.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -9,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ticket")
-public class Ticket extends BaseEntity{
+public class Ticket extends BaseEntity {
   private TariffClass tariffClass;
   private Flight flight;
   private String seat;
@@ -26,8 +28,8 @@ public class Ticket extends BaseEntity{
 
   protected Ticket () {}
 
-  @ManyToOne
-  @JoinColumn(name = "tariff_class")
+  @Column(name = "tariff_class")
+  @Enumerated(EnumType.ORDINAL)
   public TariffClass getTariffClass() {
     return tariffClass;
   }
@@ -52,5 +54,27 @@ public class Ticket extends BaseEntity{
   @JoinColumn(name = "booked_ticket")
   public BookedTicket getBookedTicket() {
     return bookedTicket;
+  }
+
+  public void setTariffClass(TariffClass tariffClass) {
+    this.tariffClass = tariffClass;
+  }
+
+  public void setFlight(Flight flight) {
+    this.flight = flight;
+  }
+
+  public void setSeat(String seat) {
+    this.seat = seat;
+  }
+
+  public void setPrice(double price) {
+    if (price >= 0) {
+      this.price = price;
+    }
+  }
+
+  public void setBookedTicket(BookedTicket bookedTicket) {
+    this.bookedTicket = bookedTicket;
   }
 }

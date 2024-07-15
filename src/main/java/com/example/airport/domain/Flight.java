@@ -1,5 +1,6 @@
 package com.example.airport.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -21,12 +22,17 @@ public class Flight extends BaseEntity{
   private Date arrivalDateTime;
   private List<Ticket> tickets;
 
-  public Flight(Airline airline, Airport departureAirport, Date departureDateTime, Airport arrivalAirport, Date arrivalDateTime, List<Ticket> tickets) {
+  public Flight(Airline airline, Airport departureAirport, Date departureDateTime, Airport arrivalAirport, Date arrivalDateTime) {
     this.airline = airline;
     this.departureAirport = departureAirport;
     this.departureDateTime = departureDateTime;
     this.arrivalAirport = arrivalAirport;
     this.arrivalDateTime = arrivalDateTime;
+    this.tickets = new ArrayList<>();
+  }
+
+  public Flight(Airline airline, Airport departureAirport, Date departureDateTime, Airport arrivalAirport, Date arrivalDateTime, List<Ticket> tickets) {
+    this(airline, departureAirport, departureDateTime, arrivalAirport, arrivalDateTime);
     this.tickets = tickets;
   }
 
@@ -63,5 +69,29 @@ public class Flight extends BaseEntity{
   @OneToMany(fetch = FetchType.LAZY)
   public List<Ticket> getTickets() {
     return tickets;
+  }
+
+  public void setAirline(Airline airline) {
+    this.airline = airline;
+  }
+
+  public void setDepartureAirport(Airport departureAirport) {
+    this.departureAirport = departureAirport;
+  }
+
+  public void setDepartureDateTime(Date departureDateTime) {
+    this.departureDateTime = departureDateTime;
+  }
+
+  public void setArrivalAirport(Airport arrivalAirport) {
+    this.arrivalAirport = arrivalAirport;
+  }
+
+  public void setArrivalDateTime(Date arrivalDateTime) {
+    this.arrivalDateTime = arrivalDateTime;
+  }
+
+  public void setTickets(List<Ticket> tickets) {
+    this.tickets = tickets;
   }
 }

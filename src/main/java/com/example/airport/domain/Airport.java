@@ -26,4 +26,12 @@ public class Airport extends BaseEntity{
   public String getCity() {
     return city;
   }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
 }

@@ -1,5 +1,7 @@
 package com.example.airport.domain;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,12 +13,14 @@ public class Passenger extends BaseEntity{
   private String middleName;
   private String lastName;
   private String passport;
+  private Date dateOfBirth;
 
-  public Passenger(String firstName, String middleName, String lastName, String passport) {
+  public Passenger(String firstName, String middleName, String lastName, String passport, Date dateOfBirth) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
     this.passport = passport;
+    this.dateOfBirth = dateOfBirth;
   }
 
   protected Passenger() {}
@@ -39,5 +43,30 @@ public class Passenger extends BaseEntity{
   @Column(name = "passport")
   public String getPassport() {
     return passport;
+  }
+
+  @Column(name = "date_of_birth")
+  public Date getDateOfBirth() {
+    return dateOfBirth;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public void setPassport(String passport) {
+    this.passport = passport;
+  }
+
+  public void setDateOfBirth(Date dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
   }
 }

@@ -11,9 +11,13 @@ public abstract class BaseEntity {
   private int id;
 
   @Id
-  @Column(insertable = false, name = "id")
+  @Column(name = "id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   public int getId() {
     return id;
+  }
+
+  private void setId(int id) {
+    this.id = id;
   }
 }

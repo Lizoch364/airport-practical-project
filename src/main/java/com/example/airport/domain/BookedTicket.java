@@ -4,6 +4,9 @@ import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -34,14 +37,14 @@ public class BookedTicket extends BaseEntity{
     return ticket;
   }
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "passenger")
   public Passenger getPassenger() {
     return passenger;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "status")
+  @Column(name = "status")
+  @Enumerated(EnumType.ORDINAL)
   public BookingStatus getStatus() {
     return status;
   }
@@ -54,5 +57,25 @@ public class BookedTicket extends BaseEntity{
   @Column(name = "update_at")
   public Date getUpdatedAt() {
     return updatedAt;
+  }
+
+  public void setTicket(Ticket ticket) {
+    this.ticket = ticket;
+  }
+
+  public void setPassenger(Passenger passenger) {
+    this.passenger = passenger;
+  }
+
+  public void setStatus(BookingStatus status) {
+    this.status = status;
+  }
+
+  public void setBookedAt(Date bookedAt) {
+    this.bookedAt = bookedAt;
+  }
+
+  public void setUpdatedAt(Date updatedAt) {
+    this.updatedAt = updatedAt;
   }
 }
