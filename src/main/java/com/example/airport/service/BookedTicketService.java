@@ -1,7 +1,14 @@
 package com.example.airport.service;
 
-import com.example.airport.domain.BookedTicket;
+import java.util.List;
+
+import com.example.airport.dto.BookedTicketCreateDto;
+import com.example.airport.dto.BookedTicketDto;
+import com.example.airport.dto.BookedTicketUpdateDto;
 
 public interface BookedTicketService {
-  void create (BookedTicket bookedTicket);
+  BookedTicketDto findById(int id);
+  List<BookedTicketDto> findAll();
+  BookedTicketDto create(BookedTicketCreateDto bookedTicketCreateDto);
+  BookedTicketDto update(BookedTicketUpdateDto bookedTicketUpdateDto);
 }

@@ -1,7 +1,14 @@
 package com.example.airport.service;
 
-import com.example.airport.domain.Airport;
+import java.util.List;
+
+import com.example.airport.dto.AirportCreateDto;
+import com.example.airport.dto.AirportDto;
+import com.example.airport.dto.AirportUpdateDto;
 
 public interface AirportService {
-  void create(Airport airport);
+  AirportDto findById(int id);
+  List<AirportDto> findAll();
+  AirportDto create(AirportCreateDto airportcreateDto);
+  AirportDto update(AirportUpdateDto airportUpdateDto);
 }

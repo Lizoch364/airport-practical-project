@@ -1,8 +1,16 @@
 package com.example.airport.service;
 
-import com.example.airport.domain.Passenger;
+import java.util.List;
+import java.util.Optional;
+
+import com.example.airport.dto.PassengerCreateDto;
+import com.example.airport.dto.PassengerDto;
+import com.example.airport.dto.PassengerUpdateDto;
 
 public interface PassengerService {
-  void create(Passenger passenger);
-  float getDiscountByPassenger(Passenger passenger);
+  Optional<PassengerDto> findById(int id);
+  List<PassengerDto> findAll();
+  PassengerDto create(PassengerCreateDto passengerDto);
+  PassengerDto update(PassengerUpdateDto passengerUpdateDto);
+  float getDiscountByPassenger(int idPassenger);
 }
