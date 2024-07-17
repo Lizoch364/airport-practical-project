@@ -1,5 +1,6 @@
 package com.example.airport.repository.dao;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,23 @@ public class PassengerRepositoryDao implements PassengerRepository {
   private BasePassengerRepository baseRepository;
 
   @Override
-  public void create(Passenger passenger) {
-    baseRepository.save(passenger);
+  public Optional<Passenger> findById(int id) {
+    return baseRepository.findById(id);
   }
 
   @Override
-  public Optional<Passenger> findById(int id) {
-    return baseRepository.findById(id);
+  public List<Passenger> findAll() {
+    return baseRepository.findAll();
+  }
+
+  @Override
+  public Passenger create(Passenger passenger) {
+    return baseRepository.save(passenger);
+  }
+
+  @Override
+  public Passenger update(Passenger passenger) {
+    return baseRepository.save(passenger);
   }
 }
 

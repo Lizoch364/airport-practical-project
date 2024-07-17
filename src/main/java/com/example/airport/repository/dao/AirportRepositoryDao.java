@@ -1,5 +1,8 @@
 package com.example.airport.repository.dao;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,8 +19,23 @@ public class AirportRepositoryDao implements AirportRepository{
   private BaseAirportRepository baseRepository;
 
   @Override
-  public void create(Airport airport) {
-    baseRepository.save(airport);
+  public Optional<Airport> findById(int id) {
+    return baseRepository.findById(id);
+  }
+
+  @Override
+  public List<Airport> findAll() {
+    return baseRepository.findAll();
+  }
+
+  @Override
+  public Airport create(Airport airport) {
+    return baseRepository.save(airport);
+  }
+
+  @Override
+  public Airport update(Airport airport) {
+    return baseRepository.save(airport);
   }
 
   @Override
@@ -28,6 +46,6 @@ public class AirportRepositoryDao implements AirportRepository{
 
 @Repository
 interface BaseAirportRepository extends JpaRepository<Airport, Integer>{
-  @Query(value = "select f.departureAirport from Flight as f join Ticket where :ticket in f.tickets")
+  @Query(value = "SELECT a FROM Airport a JOIN Flight f ON f.departureAirport = a JOIN f.tickets t WHERE :ticket = t")
   Airport getDepartureAirportsByTicket(@Param(value = "ticket") Ticket ticket);
 }

@@ -14,8 +14,8 @@ import com.example.airport.domain.Ticket;
 public interface TicketRepository {
   Optional<Ticket> findById(int id);
   List<Ticket> findAll();
-  void create(Ticket ticket);
-  void deleteById(int id);
+  Ticket create(Ticket ticket);
+  Ticket update(Ticket ticket);
   List<Ticket> findAllTicketsByAirports(Airport departureAirport, Airport arrivalAirport);
   List<Ticket> findAllTicketsByDepartureAirport(Airport departureAirport);
   List<Ticket> findAllTicketsByArrivalAirport(Airport arrivalAirport);
