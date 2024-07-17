@@ -72,23 +72,33 @@ public class Flight extends BaseEntity{
   }
 
   public void setAirline(Airline airline) {
-    this.airline = airline;
+    if (airline != null) {
+      this.airline = airline;
+    }
   }
 
   public void setDepartureAirport(Airport departureAirport) {
-    this.departureAirport = departureAirport;
+    if (departureAirport != null) {
+      this.departureAirport = departureAirport;
+    }
   }
 
   public void setDepartureDateTime(Date departureDateTime) {
-    this.departureDateTime = departureDateTime;
+    if (departureDateTime != null){
+      this.departureDateTime = departureDateTime;
+    }
   }
 
   public void setArrivalAirport(Airport arrivalAirport) {
-    this.arrivalAirport = arrivalAirport;
+    if (arrivalAirport != null) {
+      this.arrivalAirport = arrivalAirport;
+    }
   }
 
   public void setArrivalDateTime(Date arrivalDateTime) {
-    this.arrivalDateTime = arrivalDateTime;
+    if (arrivalDateTime != null) {
+      this.arrivalDateTime = arrivalDateTime;
+    }
   }
 
   public void setTickets(List<Ticket> tickets) {

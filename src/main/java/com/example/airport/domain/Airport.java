@@ -28,10 +28,14 @@ public class Airport extends BaseEntity{
   }
 
   public void setName(String name) {
-    this.name = name;
+    if (name != null){
+      this.name = name;
+    }
   }
 
   public void setCity(String city) {
-    this.city = city;
+    if (city != null){
+      this.city = city;
+    }
   }
 }

@@ -51,22 +51,32 @@ public class Passenger extends BaseEntity{
   }
 
   public void setFirstName(String firstName) {
-    this.firstName = firstName;
+    if(firstName != null){
+      this.firstName = firstName;
+    }
   }
 
   public void setMiddleName(String middleName) {
-    this.middleName = middleName;
+    if(middleName != null){
+      this.middleName = middleName;
+    }
   }
 
   public void setLastName(String lastName) {
-    this.lastName = lastName;
+    if(lastName != null){
+      this.lastName = lastName;
+    }
   }
 
   public void setPassport(String passport) {
-    this.passport = passport;
+    if(passport != null) {
+      this.passport = passport;
+    }
   }
 
   public void setDateOfBirth(Date dateOfBirth) {
-    this.dateOfBirth = dateOfBirth;
+    if(dateOfBirth != null) {
+      this.dateOfBirth = dateOfBirth;
+    }
   }
 }

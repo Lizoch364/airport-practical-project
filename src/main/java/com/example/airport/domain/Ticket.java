@@ -2,8 +2,6 @@ package com.example.airport.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
@@ -18,8 +16,8 @@ public class Ticket extends BaseEntity {
   private double price;
   private BookedTicket bookedTicket;
 
-  public Ticket (Flight flight, String seat, double price) {
-    this.tariffClass = TariffClass.BASIC;
+  public Ticket (Flight flight, String seat, double price, TariffClass tariffClass) {
+    this.tariffClass = tariffClass;
     this.flight = flight;
     this.seat = seat;
     this.price = price;
@@ -28,8 +26,8 @@ public class Ticket extends BaseEntity {
 
   protected Ticket () {}
 
-  @Column(name = "tariff_class")
-  @Enumerated(EnumType.ORDINAL)
+  @JoinColumn(name = "tariff_class")
+  @ManyToOne
   public TariffClass getTariffClass() {
     return tariffClass;
   }
@@ -44,11 +42,14 @@ public class Ticket extends BaseEntity {
   public String getSeat() {
     return seat;
   }
+  //setters and getters
+
 
   @Column(name = "price")
   public double getPrice() {
     return price;
   }
+
 
   @OneToOne
   @JoinColumn(name = "booked_ticket")
@@ -57,15 +58,21 @@ public class Ticket extends BaseEntity {
   }
 
   public void setTariffClass(TariffClass tariffClass) {
-    this.tariffClass = tariffClass;
+    if (tariffClass != null) {
+      this.tariffClass = tariffClass;
+    }
   }
 
   public void setFlight(Flight flight) {
-    this.flight = flight;
+    if (flight != null) {
+      this.flight = flight;
+    }
   }
 
   public void setSeat(String seat) {
-    this.seat = seat;
+    if (seat != null) {
+      this.seat = seat;
+    }
   }
 
   public void setPrice(double price) {
