@@ -31,13 +31,13 @@ public class TicketRepositoryDao implements TicketRepository {
   }
 
   @Override
-  public void create(Ticket ticket) {
-    baseRepository.save(ticket);
+  public Ticket create(Ticket ticket) {
+    return baseRepository.save(ticket);
   }
 
   @Override
-  public void deleteById(int id) {
-    baseRepository.deleteById(id);
+  public Ticket update(Ticket ticket) {
+   return baseRepository.save(ticket);
   }
 
   @Override
@@ -57,12 +57,15 @@ public class TicketRepositoryDao implements TicketRepository {
 
   @Override
   public Set<Ticket> findTicketByPassenger(Passenger passenger) {
-    return baseRepository.findTicketByPassenger(passenger);
+    return baseRepository.findTicketByPassenger(passenger.getId());
   }
 }
 
 @Repository
 interface BaseTicketRepository extends JpaRepository<Ticket, Integer>{
+  @Query(value = "select t from Ticket as t join t.bookedTicket as b join b.passenger as p where p.id = :passengerId")
+  Set<Ticket> findTicketByPassenger(@Param(value = "passengerId") int passengerId);
+  
   @Query(value = "select t from Ticket t join t.flight as f where (f.departureAirport = :departureAirport and f.arrivalAirport = :arrivalAirport)")
   List<Ticket> findAllTicketsByAirports(@Param(value = "departureAirport") Airport departureAirport, @Param(value = "arrivalAirport") Airport arrivalAirport);
 
@@ -72,6 +75,5 @@ interface BaseTicketRepository extends JpaRepository<Ticket, Integer>{
   @Query(value = "select t from Ticket t join t.flight as f where f.arrivalAirport = :arrivalAirport")
   List<Ticket> findAllTicketsByArrivalAirport(@Param(value = "arrivalAirport") Airport arrivalAirport);
 
-  @Query(value = "select t from Ticket as t join BookedTicket as b where b.passenger = passenger")
-  Set<Ticket> findTicketByPassenger(@Param(value = "passenger") Passenger passenger);
+
 }
